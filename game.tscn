@@ -130,6 +130,15 @@ position = Vector2(177.5, 327.5)
 scale = Vector2(0.5078125, 0.5078125)
 texture = ExtResource("1_80nbo")
 
+[node name="ViewPortFrame" type="Node2D" parent="."]
+visible = false
+
+[node name="Line2D" type="Line2D" parent="ViewPortFrame"]
+points = PackedVector2Array(1, 1, 1, 360, 640, 360, 640, 1)
+closed = true
+width = 1.0
+default_color = Color(1, 0, 0, 1)
+
 [connection signal="toggled" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainerTransparent/CheckButton" to="." method="_on_transparent_button_toggled"]
 [connection signal="toggled" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainerBorder/CheckButton" to="." method="_on_border_button_toggled"]
 [connection signal="toggled" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainerBorder2/CheckButton" to="." method="_on_always_on_top_button_toggled"]

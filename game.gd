@@ -2,6 +2,7 @@ extends Node2D
 
 var window: Window
 var gold: int = 0
+var click_pos := Vector2i.ZERO
 @onready var shipPath: PathFollow2D = $PathToGold/PathFollow2D
 
 # Called when the node enters the scene tree for the first time.
@@ -12,6 +13,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	shipPath.progress_ratio += delta * 0.1
+	if Input.is_action_just_pressed("click"):
+		click_pos = Vector2i(get_global_mouse_position())
+	if Input.is_action_pressed("click"):
+		$ViewPortFrame.visible = true
+		window.position = window.position + Vector2i(get_global_mouse_position()) - click_pos
+	else:
+		$ViewPortFrame.visible = false
+		
 
 
 func _on_transparent_button_toggled(toggled_on: bool) -> void:
