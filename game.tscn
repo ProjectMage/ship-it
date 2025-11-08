@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://v4n4s1q6aegb"]
+[gd_scene load_steps=8 format=3 uid="uid://v4n4s1q6aegb"]
 
 [ext_resource type="Texture2D" uid="uid://ctaktq0m7778j" path="res://icon.svg" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://phl2nmy8mphy" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://dnysptvkod8l2" path="res://WaveWater_single.png" id="4_fc0e3"]
 
 [sub_resource type="Curve2D" id="Curve2D_e2o6t"]
 _data = {
@@ -88,6 +89,7 @@ text = "No Focus"
 layout_mode = 2
 
 [node name="PathToGold" type="Path2D" parent="."]
+position = Vector2(0, -2)
 curve = SubResource("Curve2D_e2o6t")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="PathToGold"]
@@ -174,6 +176,16 @@ item_4/disabled = true
 item_4/separator = true
 item_5/text = "Quit"
 item_5/id = 5
+
+[node name="BackgroundWaves" type="Parallax2D" parent="."]
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(8, 0)
+ignore_camera_scroll = true
+
+[node name="WaveWaterSingle" type="Sprite2D" parent="BackgroundWaves"]
+texture_filter = 1
+position = Vector2(320, 350)
+texture = ExtResource("4_fc0e3")
 
 [connection signal="toggled" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainerTransparent/CheckButton" to="." method="_on_transparent_button_toggled"]
 [connection signal="toggled" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainerBorder/CheckButton" to="." method="_on_border_button_toggled"]
