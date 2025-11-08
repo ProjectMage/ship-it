@@ -32,10 +32,10 @@ func _on_border_button_toggled(toggled_on: bool) -> void:
 
 
 func _on_always_on_top_button_toggled(toggled_on: bool) -> void:
-#	var borderless = window.borderless
-#	window.borderless = true
+	var borderless = window.borderless
+	window.borderless = true
 	window.always_on_top = toggled_on
-#	window.borderless = borderless
+	window.borderless = borderless
 
 func _on_no_focus_button_toggled(toggled_on: bool) -> void:
 	var borderless = window.borderless
