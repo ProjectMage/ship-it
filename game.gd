@@ -4,6 +4,7 @@ var window: Window
 var gold: int = 0
 var click_pos := Vector2i.ZERO
 @onready var shipPath: PathFollow2D = $PathToGold/PathFollow2D
+@onready var trayMenu : PopupMenu = $StatusIndicator/PopupMenu
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,6 +30,7 @@ func _on_transparent_button_toggled(toggled_on: bool) -> void:
 
 func _on_border_button_toggled(toggled_on: bool) -> void:
 	window.borderless = toggled_on
+	window.visible = !toggled_on
 
 
 func _on_always_on_top_button_toggled(toggled_on: bool) -> void:
@@ -48,3 +50,21 @@ func _on_island_area_entered(_area: Area2D) -> void:
 	$Island/Label.text = str(gold) + " Gold"
 	gold += 1
 	
+
+
+func _on_popup_menu_id_pressed(id: int) -> void:
+	#id - Function
+	# 0 - Borderless
+	# 1 - Transparent
+	# 2 - Focus
+	# 3 - Always on Top
+	# 4 - Line Seperator (no function)
+	# 5 - Quit
+	if id < 4:
+		trayMenu.set_item_checked(id, !trayMenu.is_item_checked(id))
+	match id:
+		0: _on_border_button_toggled(trayMenu.is_item_checked(id))
+		1: _on_transparent_button_toggled(trayMenu.is_item_checked(id))
+		2: _on_no_focus_button_toggled(trayMenu.is_item_checked(id))
+		3: _on_always_on_top_button_toggled(trayMenu.is_item_checked(id))
+		5: get_tree().quit()

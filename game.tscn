@@ -22,6 +22,7 @@ font_names = PackedStringArray("Ink Free")
 script = ExtResource("1_e2o6t")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 1
@@ -139,8 +140,44 @@ closed = true
 width = 1.0
 default_color = Color(1, 0, 0, 1)
 
+[node name="StatusIndicator" type="StatusIndicator" parent="."]
+tooltip = "Ship-It - Relax and prosper"
+icon = ExtResource("1_80nbo")
+menu = NodePath("PopupMenu")
+
+[node name="PopupMenu" type="PopupMenu" parent="StatusIndicator"]
+transparent_bg = false
+oversampling_override = 1.0
+size = Vector2i(151, 143)
+transparent = false
+prefer_native_menu = true
+item_count = 6
+item_0/text = "Borderless"
+item_0/checkable = 1
+item_0/checked = true
+item_0/id = 0
+item_1/text = "Transparent"
+item_1/checkable = 1
+item_1/checked = true
+item_1/id = 1
+item_2/text = "Focus"
+item_2/checkable = 1
+item_2/checked = true
+item_2/id = 2
+item_3/text = "Always on Top"
+item_3/checkable = 1
+item_3/checked = true
+item_3/id = 3
+item_4/text = "----------------"
+item_4/id = 4
+item_4/disabled = true
+item_4/separator = true
+item_5/text = "Quit"
+item_5/id = 5
+
 [connection signal="toggled" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainerTransparent/CheckButton" to="." method="_on_transparent_button_toggled"]
 [connection signal="toggled" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainerBorder/CheckButton" to="." method="_on_border_button_toggled"]
 [connection signal="toggled" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainerBorder2/CheckButton" to="." method="_on_always_on_top_button_toggled"]
 [connection signal="toggled" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainerBorder3/CheckButton" to="." method="_on_no_focus_button_toggled"]
 [connection signal="area_entered" from="Island/Area2D" to="." method="_on_island_area_entered"]
+[connection signal="id_pressed" from="StatusIndicator/PopupMenu" to="." method="_on_popup_menu_id_pressed"]
