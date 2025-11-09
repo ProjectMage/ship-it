@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://v4n4s1q6aegb"]
+[gd_scene load_steps=11 format=3 uid="uid://v4n4s1q6aegb"]
 
 [ext_resource type="Texture2D" uid="uid://ctaktq0m7778j" path="res://icon.svg" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://phl2nmy8mphy" path="res://game.gd" id="1_e2o6t"]
-[ext_resource type="Texture2D" uid="uid://dnysptvkod8l2" path="res://WaveWater_single.png" id="4_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://7fq4e264nsop" path="res://ship.png" id="2_ryrav"]
+[ext_resource type="Texture2D" uid="uid://c6kiyhgc7mrlw" path="res://island_other.png" id="3_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://dsa8ljl782268" path="res://water_wave_2.png" id="3_feb5d"]
+[ext_resource type="Texture2D" uid="uid://xhxoun7quroo" path="res://island_home.png" id="4_eow3j"]
 
 [sub_resource type="Curve2D" id="Curve2D_e2o6t"]
 _data = {
@@ -14,7 +17,7 @@ point_count = 14
 radius = 80.14195
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_feb5d"]
-radius = 73.82411
+radius = 44.181442
 
 [sub_resource type="SystemFont" id="SystemFont_e2o6t"]
 font_names = PackedStringArray("Ink Free")
@@ -100,28 +103,33 @@ rotation = -3.0069947
 position = Vector2(-15.772697, 10.208902)
 rotation = 3.0069947
 scale = Vector2(0.20312503, 0.20312503)
-texture = ExtResource("1_80nbo")
+texture = ExtResource("2_ryrav")
 
 [node name="Area2D" type="Area2D" parent="PathToGold/PathFollow2D/Ship"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathToGold/PathFollow2D/Ship/Area2D"]
 shape = SubResource("CircleShape2D_e2o6t")
 
-[node name="Island" type="Sprite2D" parent="."]
+[node name="Island" type="Node2D" parent="."]
+
+[node name="IslandSprite" type="Sprite2D" parent="Island"]
 self_modulate = Color(0.29411766, 0.9411765, 0, 1)
+position = Vector2(608, 322)
+scale = Vector2(0.32333353, 0.3400901)
+texture = ExtResource("3_fc0e3")
+
+[node name="IslandEnterArea" type="Area2D" parent="Island"]
 position = Vector2(574, 296)
-texture = ExtResource("1_80nbo")
 
-[node name="Area2D" type="Area2D" parent="Island"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Island/Area2D"]
+[node name="IslandCollision2D" type="CollisionShape2D" parent="Island/IslandEnterArea"]
+position = Vector2(31, 28)
 shape = SubResource("CircleShape2D_feb5d")
 
 [node name="Label" type="Label" parent="Island"]
-offset_left = -7.0
-offset_top = -91.0
-offset_right = 52.0
-offset_bottom = -68.0
+offset_left = 567.0
+offset_top = 205.0
+offset_right = 626.0
+offset_bottom = 228.0
 theme_override_fonts/font = SubResource("SystemFont_e2o6t")
 theme_override_font_sizes/font_size = 14
 text = "0 Gold"
@@ -129,9 +137,9 @@ horizontal_alignment = 2
 
 [node name="Gold" type="Sprite2D" parent="."]
 modulate = Color(1, 0.7254902, 0, 1)
-position = Vector2(177.5, 327.5)
-scale = Vector2(0.5078125, 0.5078125)
-texture = ExtResource("1_80nbo")
+position = Vector2(162.00002, 320)
+scale = Vector2(0.257736, 0.25773597)
+texture = ExtResource("4_eow3j")
 
 [node name="ViewPortFrame" type="Node2D" parent="."]
 visible = false
@@ -184,12 +192,13 @@ ignore_camera_scroll = true
 
 [node name="WaveWaterSingle" type="Sprite2D" parent="BackgroundWaves"]
 texture_filter = 1
-position = Vector2(320, 350)
-texture = ExtResource("4_fc0e3")
+position = Vector2(367.00003, 349.00003)
+scale = Vector2(0.16729164, 0.21907581)
+texture = ExtResource("3_feb5d")
 
 [connection signal="toggled" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainerTransparent/CheckButton" to="." method="_on_transparent_button_toggled"]
 [connection signal="toggled" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainerBorder/CheckButton" to="." method="_on_border_button_toggled"]
 [connection signal="toggled" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainerBorder2/CheckButton" to="." method="_on_always_on_top_button_toggled"]
 [connection signal="toggled" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainerBorder3/CheckButton" to="." method="_on_no_focus_button_toggled"]
-[connection signal="area_entered" from="Island/Area2D" to="." method="_on_island_area_entered"]
+[connection signal="area_entered" from="Island/IslandEnterArea" to="." method="_on_island_area_entered"]
 [connection signal="id_pressed" from="StatusIndicator/PopupMenu" to="." method="_on_popup_menu_id_pressed"]
