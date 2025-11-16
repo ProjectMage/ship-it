@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqwl47vj7agho"]
+
+[ext_resource type="Script" uid="uid://diu010tfusafa" path="res://player_ship.gd" id="1_ship"]
+[ext_resource type="Texture2D" uid="uid://7fq4e264nsop" path="res://ship.png" id="2_ship"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbmm3"]
+size = Vector2(114, 43)
+
+[node name="PlayerShip" type="CharacterBody2D"]
+script = ExtResource("1_ship")
+water_splash_force = 0.5
+water_check_distance = 25.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ship")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 23.5)
+shape = SubResource("RectangleShape2D_gbmm3")

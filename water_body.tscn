@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://fkddy20jk5pj"]
+
+[ext_resource type="Script" uid="uid://d1esx0usdr5ju" path="res://water_body.gd" id="1_gw7w0"]
+[ext_resource type="Shader" uid="uid://8ytpuwsxoyll" path="res://water_body.gdshader" id="2_gw7w0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gw7w0"]
+shader = ExtResource("2_gw7w0")
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[node name="Water_body" type="Node2D"]
+script = ExtResource("1_gw7w0")
+k = 0.03
+spread = 0.25
+distance_between_springs = 46
+number_of_springs = 50
+
+[node name="waterPoly" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_gw7w0")
+color = Color(0.19395712, 0.5593441, 0.66592264, 1)

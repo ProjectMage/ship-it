@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp87ewwaxnoht"]
+
+[ext_resource type="Script" uid="uid://umoqaxbamehu" path="res://water_alt.gd" id="1_hrua5"]
+[ext_resource type="Texture2D" uid="uid://ctaktq0m7778j" path="res://icon.svg" id="1_v12e6"]
+
+[node name="Water_alt" type="Node2D"]
+script = ExtResource("1_hrua5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1.7881393e-07, 2.3841858e-07)
+scale = Vector2(0.171875, 0.171875)
+texture = ExtResource("1_v12e6")
